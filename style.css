@@ -1,0 +1,479 @@
+/* ===== CSS Variables ===== */
+:root {
+    --primary-color: #2563eb;
+    --text-primary: #1f2937;
+    --text-secondary: #6b7280;
+    --background: #ffffff;
+    --background-alt: #f9fafb;
+    --border-color: #e5e7eb;
+    --hover-color: #eff6ff;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --max-width: 900px;
+    --spacing-unit: 1rem;
+}
+
+/* ===== Reset & Base Styles ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--background);
+    font-size: 16px;
+}
+
+/* ===== Typography ===== */
+h1, h2, h3, h4 {
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: 2.25rem;
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    color: #1d4ed8;
+}
+
+/* ===== Layout ===== */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section {
+    margin: 4rem 0;
+}
+
+/* ===== Navigation ===== */
+.navbar {
+    background: var(--background);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.nav-brand {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-menu a:hover {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+/* ===== Profile Header ===== */
+.profile-header {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+}
+
+.profile-image {
+    flex-shrink: 0;
+}
+
+.profile-image img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: var(--shadow-lg);
+    border: 4px solid var(--background);
+}
+
+.profile-info {
+    flex: 1;
+    padding-top: 1rem;
+}
+
+.title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.affiliation {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.links {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.link-btn {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: var(--background-alt);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.link-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===== Bio Section ===== */
+.bio p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+/* ===== Research Areas ===== */
+.research-areas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.research-card {
+    padding: 1.5rem;
+    background: var(--background-alt);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.research-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.research-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+}
+
+.research-card p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* ===== Performance Areas ===== */
+.performance-areas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.performance-card {
+    padding: 1.5rem;
+    background: var(--background-alt);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.performance-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.performance-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+}
+
+.performance-card p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* ===== Publications ===== */
+.publications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.subsection-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.publication-item {
+    padding: 1.5rem;
+    background: var(--background-alt);
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+    transition: all 0.2s ease;
+}
+
+.publication-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateX(4px);
+}
+
+.pub-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.pub-authors {
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.pub-venue {
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 0.75rem;
+}
+
+.pub-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.pub-links a {
+    font-size: 0.9rem;
+    padding: 0.25rem 0.75rem;
+    background: var(--background);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.pub-links a:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* ===== Experience Lists ===== */
+.subsection {
+    margin-bottom: 2rem;
+}
+
+.experience-list {
+    list-style: none;
+}
+
+.experience-list li {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background: var(--background-alt);
+    border-radius: 6px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.exp-title {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.exp-meta {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* ===== Awards ===== */
+.awards-list {
+    list-style: none;
+}
+
+.awards-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    background: var(--background-alt);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.awards-list li:hover {
+    background: var(--hover-color);
+    transform: translateX(4px);
+}
+
+.award-name {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.award-year {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+/* ===== Contact ===== */
+.contact-info {
+    padding: 2rem;
+    background: var(--background-alt);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.contact-info p {
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.contact-info strong {
+    color: var(--text-primary);
+    margin-right: 0.5rem;
+}
+
+/* ===== Footer ===== */
+footer {
+    margin-top: 6rem;
+    padding: 2rem 0;
+    background: var(--background-alt);
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+}
+
+footer p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .profile-image {
+        margin: 0 auto;
+    }
+
+    .profile-image img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .links {
+        justify-content: center;
+    }
+
+    .nav-menu {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .research-areas {
+        grid-template-columns: 1fr;
+    }
+    .performance-areas {
+        grid-template-columns: 1fr;
+    }
+
+    .awards-list li {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .navbar .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
