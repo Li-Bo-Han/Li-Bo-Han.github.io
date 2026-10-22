@@ -164,7 +164,7 @@ a:hover {
 
 .affiliation {
     font-size: 1rem;
-    color: var(--text-secondary);
+    color: black;
     margin-bottom: 1.5rem;
 }
 
@@ -507,4 +507,10 @@ footer p {
     display: flex;
     align-items: center;
     gap: 1rem;
+}
+
+.affiliation-logo {
+  height: 1.5em;
+  width: auto;
+  vertical-align: bottom;
 }
