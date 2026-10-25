@@ -458,7 +458,7 @@ footer p {
     .research-areas {
         grid-template-columns: 1fr;
     }
-    
+
     .performance-areas {
         grid-template-columns: 1fr;
     }
@@ -510,7 +510,158 @@ footer p {
 }
 
 .affiliation-logo {
-  height: 1.5em;
-  width: auto;
-  vertical-align: bottom;
+    height: 1.5em;
+    width: auto;
+    vertical-align: bottom;
+}
+
+/* ===== Modal / 弹窗 ===== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    z-index: 1000;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background: var(--background);
+    border-radius: 10px;
+    box-shadow: var(--shadow-lg);
+    max-width: 700px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 2rem;
+
+    transform: translateY(20px) scale(0.98);
+    transition: transform 0.25s ease;
+}
+
+.modal-overlay.active .modal {
+    transform: translateY(0) scale(1);
+}
+
+/* 关闭按钮 */
+.modal-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.75rem;
+    line-height: 1;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    z-index: 2;
+}
+
+.modal-close:hover {
+    color: var(--primary-color);
+    background: var(--hover-color);
+}
+
+.modal h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    padding-right: 2rem;
+}
+
+.modal p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* 弹窗内图片 */
+.modal img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 0 auto 1rem;
+}
+
+/* 可点击放大的图片 */
+.modal img.zoomable {
+    cursor: zoom-in;
+    transition: transform 0.2s ease;
+}
+
+.modal img.zoomable:hover {
+    transform: scale(1.02);
+}
+
+/* 弹窗内列表 */
+.modal ul {
+    padding-left: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.modal li {
+    margin-bottom: 0.35rem;
+}
+
+/* ===== 图片放大 Lightbox ===== */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    z-index: 1100;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: var(--shadow-lg);
+    transform: scale(0.96);
+    transition: transform 0.25s ease;
+}
+
+.lightbox.active img {
+    transform: scale(1);
+}
+
+/* 移动端适配 */
+@media (max-width: 480px) {
+    .modal {
+        padding: 1.5rem;
+        max-height: 90vh;
+    }
+
+    .modal h3 {
+        font-size: 1.1rem;
+    }
 }
