@@ -260,28 +260,32 @@
   }
 
   function tileGeometry() {
-    const layerWidth = elements.tileLayer.clientWidth;
-    const boardStyles = getComputedStyle(elements.board);
-    const gap = Number.parseFloat(boardStyles.getPropertyValue("--board-gap"))
-      || 8;
-    const cellSize = (
-      layerWidth - gap * (state.size - 1)
-    ) / state.size;
+    const layerRect = elements.tileLayer.getBoundingClientRect();
+    const cellRects = Array.from(elements.boardGrid.children, (cell) => {
+      const rect = cell.getBoundingClientRect();
+      return {
+        x: rect.left - layerRect.left,
+        y: rect.top - layerRect.top,
+        width: rect.width,
+        height: rect.height,
+      };
+    });
 
     return {
-      gap,
-      cellSize: Math.max(1, cellSize),
+      cellRects,
     };
   }
 
   function positionTile(tileElement, row, column, geometry) {
-    const offset = geometry.cellSize + geometry.gap;
-    const x = column * offset;
-    const y = row * offset;
+    const cell = geometry.cellRects[row * state.size + column];
+    if (!cell) {
+      return null;
+    }
 
-    tileElement.style.width = `${geometry.cellSize}px`;
-    tileElement.style.height = `${geometry.cellSize}px`;
-    tileElement.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    tileElement.style.width = `${cell.width}px`;
+    tileElement.style.height = `${cell.height}px`;
+    tileElement.style.transform = `translate3d(${cell.x}px, ${cell.y}px, 0)`;
+    return cell;
   }
 
   function layoutTiles(instant = false) {
@@ -300,12 +304,12 @@
       const row = Number(tileElement.dataset.row);
       const column = Number(tileElement.dataset.column);
       const value = Number(tileElement.dataset.value);
-      positionTile(tileElement, row, column, geometry);
+      const cell = positionTile(tileElement, row, column, geometry);
 
       const valueElement = tileElement.querySelector(".tile__value");
-      if (valueElement) {
+      if (valueElement && cell) {
         valueElement.style.fontSize = `${tileFontSize(
-          geometry.cellSize,
+          Math.min(cell.width, cell.height),
           value,
         )}px`;
       }
