@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5efe4">
+  <meta name="description" content="支持手机滑动和电脑键盘操作的纯静态 2048 游戏">
+  <title>2048 · 滑动合成</title>
+  <link rel="stylesheet" href="2048.css">
+</head>
+<body>
+  <div class="page-glow page-glow--one" aria-hidden="true"></div>
+  <div class="page-glow page-glow--two" aria-hidden="true"></div>
+
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <h1>2048</h1>
+        <p>把相同数字滑到一起</p>
+      </div>
+
+      <div class="topbar__right">
+        <div class="scores" aria-label="游戏分数">
+          <div class="score-card">
+            <span>分数</span>
+            <strong id="score">0</strong>
+          </div>
+          <div class="score-card score-card--best">
+            <span>最高</span>
+            <strong id="best">0</strong>
+          </div>
+        </div>
+        <button class="icon-button" id="settingsButton" type="button"
+                aria-label="打开设置" title="设置">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 8.25A3.75 3.75 0 1 0 12 15.75 3.75 3.75 0 0 0
+                     12 8.25Zm9 4.9v-2.3l-2.05-.68a7.52 7.52 0 0 0-.76-1.84
+                     l.98-1.94-1.63-1.63-1.94.98a7.52 7.52 0 0 0-1.84-.76
+                     L13.08 3h-2.3l-.68 2.05a7.52 7.52 0 0 0-1.84.76l-1.94-.98
+                     -1.63 1.63.98 1.94a7.52 7.52 0 0 0-.76 1.84L3 13.08v2.3
+                     l2.05.68c.17.65.43 1.27.76 1.84l-.98 1.94 1.63 1.63
+                     1.94-.98c.57.33 1.19.59 1.84.76l.68 2.05h2.3l.68-2.05
+                     a7.52 7.52 0 0 0 1.84-.76l1.94.98 1.63-1.63-.98-1.94
+                     c.33-.57.59-1.19.76-1.84Z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="game-shell">
+      <div class="game-meta">
+        <span class="size-badge" id="sizeLabel">5 × 5</span>
+        <span class="game-status" id="statusLabel" aria-live="polite">
+          滑动方块，或使用方向键 / WASD
+        </span>
+      </div>
+
+      <section class="board" id="board" tabindex="0"
+               aria-label="2048 棋盘">
+        <div class="board-inner">
+          <div class="board-grid" id="boardGrid" aria-hidden="true"></div>
+          <div class="tile-layer tile-layer--instant" id="tileLayer"
+               aria-hidden="true"></div>
+
+          <div class="board-overlay" id="gameOverOverlay" hidden>
+            <div class="overlay-card">
+              <span class="overlay-kicker">本局结束</span>
+              <strong id="finalScore">0 分</strong>
+              <button class="primary-button" id="gameOverNewButton"
+                      type="button">再来一局</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="game-footer">
+        <button class="new-game-button" id="newGameButton" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20.5 12a8.5 8.5 0 1 1-2.49-6.01l2.49 2.5V3h-5.48l2.1
+                     2.11A10.5 10.5 0 1 0 22.5 12h-2Z"/>
+          </svg>
+          新游戏
+        </button>
+        <p><span class="desktop-hint">方向键 / WASD</span>
+          <span class="mobile-hint">手指滑动棋盘</span>
+        </p>
+      </footer>
+    </main>
+  </div>
+
+  <dialog class="settings-dialog" id="settingsDialog"
+          aria-labelledby="settingsTitle">
+    <div class="dialog-heading">
+      <div>
+        <span class="dialog-kicker">游戏设置</span>
+        <h2 id="settingsTitle">选择棋盘大小</h2>
+      </div>
+      <button class="close-button" id="closeSettingsButton" type="button"
+              aria-label="关闭设置">×</button>
+    </div>
+
+    <p class="dialog-copy">
+      更改大小会开始新的一局。每个棋盘尺寸的最高分会分别保留。
+    </p>
+
+    <div class="size-options" id="sizeOptions"
+         role="group" aria-label="棋盘大小"></div>
+
+    <div class="dialog-actions">
+      <button class="secondary-button" id="cancelSettingsButton"
+              type="button">取消</button>
+      <button class="primary-button" id="applySizeButton"
+              type="button">应用并重新开始</button>
+    </div>
+  </dialog>
+
+  <noscript>
+    <p class="noscript-message">请启用 JavaScript 后开始游戏。</p>
+  </noscript>
+
+  <script src="2048.js" defer></script>
+</body>
+</html>
